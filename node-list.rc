@@ -1,0 +1,8 @@
+# Nodelist for install scripts
+function RB () {
+  local ns
+  for n in 01 02 ; do ns+="redbad${n} " ; done
+  for n in 01 02 03 04 05 06 06 07 08 09 10 11 ; do ns+="rbdata${n} " ; done
+  echo $ns
+}
+export RB=`RB`
