@@ -17,12 +17,15 @@ You can install new packages in a toolbox too:
 
 ## Summary
 
-| ----------------------- | ------------------------------- |
-| Script                  | Role                            |
-| ----------------------- | ------------------------------- |
-| `hadoop-inst-net.sh`    | Adapt `resolv.conf` and `hosts` |
-|                         |                                 |
-| ----------------------- | ------------------------------- |
+| ----------------------- | --------------------------------- |
+| Script                  | Role                              |
+| ----------------------- | --------------------------------- |
+| `node-list.rc`          | Utility function to set RB envvar |
+| `local-config.rc`       | Timezone etc., for .bashrc        |
+| `hosts`                 | See below                         |
+| `package-install.sh`    | Install JDK and reboot            |
+| `hadoop-inst-net.sh`    | Adapt `resolv.conf` and `hosts`   |
+| ----------------------- | --------------------------------- |
 
 ## Create `hosts`
 
