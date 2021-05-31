@@ -26,9 +26,10 @@ You can install new packages in a toolbox too:
 | `package-install.sh`    | Install JDK and reboot            |
 | `hadoop-inst-net.sh`    | Adapt `resolv.conf` and `hosts`   |
 | `hadoop-inst-env.sh`    | Create Hadoop user, etc.          |
+| `toolbox-inst.sh`       | Create toolbox for running sbt    |
 | ----------------------- | --------------------------------- |
 
-Procedure:
+Main procedure:
 
 1. The scripts assume that the steps in `redbad/install.md` are carried out first.
 1. The `*.rc` files should be placed in the `bashrc.d` config directory for a shared environment.
@@ -36,3 +37,6 @@ Procedure:
 1. Script `hadoop-inst-net.sh` is run once to configure networking for Hadoop.
 1. Script `hadoop-inst-env.sh` is run once to create a `hadoop` user and execute other prepatory steps.
 
+Additional steps:
+
+1. Script `toolbox-inst.sh` to setup a `toolbox` with SBT and java.
