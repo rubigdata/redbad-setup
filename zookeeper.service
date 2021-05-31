@@ -4,10 +4,10 @@ Documentation=http://zookeeper.apache.org
 
 [Service]    
 Type=forking
-Environment=ZOO_LOG_DIR=/var/log/zookeeper
-ExecStart=/usr/bin/sudo -u zookeeper /opt/zookeeper/bin/zkServer.sh start /etc/zookeeper/conf/zoo.cfg
-ExecStop=/usr/bin/sudo -u zookeeper /opt/zookeeper/bin/zkServer.sh stop /etc/zookeeper/conf/zoo.cfg
-ExecReload=/usr/bin/sudo -u zookeeper /opt/zookeeper/bin/zkServer.sh restart /etc/zookeeper/conf/zoo.cfg
+Environment="ZOO_LOG_DIR=/var/log/zookeeper"
+ExecStart=/usr/bin/sudo -E -u zookeeper /opt/zookeeper/bin/zkServer.sh start /etc/zookeeper/conf/zoo.cfg
+ExecStop=/usr/bin/sudo -E -u zookeeper /opt/zookeeper/bin/zkServer.sh stop /etc/zookeeper/conf/zoo.cfg
+ExecReload=/usr/bin/sudo -E -u zookeeper /opt/zookeeper/bin/zkServer.sh restart /etc/zookeeper/conf/zoo.cfg
 TimeoutSec=30
 Restart=on-failure
 
