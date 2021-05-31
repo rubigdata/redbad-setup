@@ -25,4 +25,10 @@ done
 # Install Node identifier and config file
 echo $1 | sudo -u zookeeper tee /var/data/zookeeper/myid
 sudo -u zookeeper cp zoo.cfg /etc/zookeeper/conf/zoo.cfg
-
+#
+# Systemd user setup
+mkdir -p $HOME/.config/systemd/user
+cp zookeeper.service $HOME/.config/systemd/user
+systemctl --user enable zookeeper
+systemctl --user start zookeeper
+sudo loginctl enable-linger core
