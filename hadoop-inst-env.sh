@@ -19,3 +19,12 @@ usermod -aG wheel,sudo hdfs
 usermod -aG wheel,sudo mapred
 usermod -aG wheel,sudo spark
 usermod -aG wheel,sudo zookeeper
+# Data directory
+sudo mkdir -p /var/data
+# Zookeeper data directory and symlink
+[ -d /var/storage/data8 ] && ZKDATA=/var/storage/data8/zookeeper \
+                          || ZKDATA=/var/storage/data2/zookeeper
+sudo mkdir -p $ZKDATA
+sudo chown -R zookeeper:hadoop $ZKDATA
+sudo ln -s $ZKDATA /var/data/zookeeper
+sudo chown -R zookeeper:hadoop /var/data/zookeeper
