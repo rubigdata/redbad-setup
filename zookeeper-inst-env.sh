@@ -22,5 +22,7 @@ do
   sudo chmod -R 755 $d
 done
 #
-# Node Identifier
-sudo su zookeeper -c "echo $1 > /var/data/zookeeper/myid"
+# Install Node identifier and config file
+echo $1 | sudo -u zookeeper tee /var/data/zookeeper/myid
+sudo -u zookeeper cp zoo.cfg /etc/zookeeper/conf/zoo.cfg
+
