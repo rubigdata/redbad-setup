@@ -1,6 +1,9 @@
 #!/bin/sh
 #
-# Remove directories
+# Undo package install
+sudo rm -rf /opt/zookeeper
+#
+# Undo directory structure
 [ -d /var/storage/data8 ] && ZKDATA=/var/storage/data8/zookeeper \
                           || ZKDATA=/var/storage/data2/zookeeper
 sudo rm -rf $ZKDATA
