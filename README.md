@@ -24,8 +24,9 @@ You can install new packages in a toolbox too:
 | `local-config.rc`       | Timezone etc., for .bashrc        |
 | `hosts`                 | Cluster's IP addresses            |
 | `package-install.sh`    | Install JDK and reboot            |
-| `hadoop-inst-net.sh`    | Adapt `resolv.conf` and `hosts`   |
-| `hadoop-inst-env.sh`    | Create Hadoop user, etc.          |
+| `redbad-inst-net.sh`    | Adapt `resolv.conf` and `hosts`   |
+| `redbad-inst-env.sh`    | Create users, generic setup       |
+| `redbad-inst-pkg.sh`    | Download software packages        |
 | `zookeeper-inst-env.sh` | Create Zookeeper directories etc. |
 | `toolbox-inst.sh`       | Create toolbox for running sbt    |
 | ----------------------- | --------------------------------- |
@@ -35,9 +36,9 @@ Main procedure:
 1. The scripts assume that the steps in `redbad/install.md` are carried out first.
 1. The `*.rc` files should be placed in the `bashrc.d` config directory for a shared environment.
 1. Script `package-install.sh` is run once to install Java.
-1. Script `hadoop-inst-net.sh` is run once to configure networking on the cluster.
-1. Script `hadoop-inst-env.sh` is run once to create system users for Hadoop, Spark and Zookeeper, and execute other prepatory steps.
-1. Script `hadoop-inst-pkg.sh` is run once to download the software distributions for Hadoop, Spark and Zookeeper.
+1. Script `redbad-inst-net.sh` is run once to configure networking on the cluster.
+1. Script `redbad-inst-env.sh` is run once to create system users for Hadoop, Spark and Zookeeper, and execute other prepatory steps.
+1. Script `redbad-inst-pkg.sh` is run once to download the software distributions for Hadoop, Spark and Zookeeper.
 1. Script `zookeeper-inst-env.sh` is run once for every Zookeeper node to create the Zookeeper data directories.
 
 Additional steps:
