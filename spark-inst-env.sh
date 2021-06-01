@@ -12,3 +12,4 @@ sudo -u spark mkdir -p /opt/spark/.ssh/authorized_keys.d
 sudo -u spark chmod -R og-rwx /opt/spark/.ssh
 sudo cp $HOME/.ssh/authorized_keys.d/id_rsa_redbad-nodes.pub /opt/spark/.ssh/authorized_keys.d
 sudo chown spark:hadoop /opt/spark/.ssh/authorized_keys.d/id_rsa_redbad-nodes.pub
+sudo -u spark cp ssh_config /opt/spark/.ssh
