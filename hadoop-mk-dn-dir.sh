@@ -4,18 +4,16 @@
 # Table 4.4 from Eric Sammer's Hadoop Operations (2012).
 # Updates: hadoop-project-dist/hadoop-common/DeprecatedProperties.html
 #
-# dfs.datanode.data.dir
 for n in 1 2 3 4 5 6
 do
+    #
+    # dfs.datanode.data.dir
     d="/var/storage/data${n}/dfs/dn"
     mkdir -p $d
     chown hdfs:hadoop $d
     chmod 0700 $d
-done
-#
-# mapreduce.job.local.dir
-for n in 1 2 3 4 5 6
-do
+    #
+    # mapreduce.job.local.dir
     d="/var/storage/data${n}/mapred/local"
     mkdir -p $d
     chown mapred:hadoop $d
