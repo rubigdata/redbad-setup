@@ -14,10 +14,17 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 <!-- REDBAD Hadoop Configuration 2021 -->
+<!--
+  Anticipating research cluster, the setup already hints at two nameservices.
+  HDFS nameservice frisia cannot run on the same nodes as gelre, so will be added
+  this fall. The idea for the setup remains the same, but now we allocate disks
+  that will move over to frisia eventually to gelre instead.
+-->
 <configuration>
 <property>
   <name>dfs.nameservices</name>
-  <value>gelre,frisia</value>
+  <value>gelre</value>
+  <!--<value>gelre,frisia</value>-->
 </property>
 <property>
   <name>dfs.ha.namenodes.gelre</name>
@@ -40,11 +47,11 @@
 <!--
 <property>
   <name>dfs.namenode.rpc-address.frisia.nn1</name>
-  <value>redbad02.cs.ru.nl:8021</value>
+  <value>redbad03.cs.ru.nl:8020</value>
 </property>
 <property>
   <name>dfs.namenode.rpc-address.frisia.nn2</name>
-  <value>redbad01.cs.ru.nl:8021</value>
+  <value>redbad04.cs.ru.nl:8020</value>
 </property>
 -->
 <property>
@@ -58,11 +65,11 @@
 <!--
 <property>
   <name>dfs.namenode.http-address.frisia.nn1</name>
-  <value>redbad02.cs.ru.nl:9871</value>
+  <value>redbad03.cs.ru.nl:9870</value>
 </property>
 <property>
   <name>dfs.namenode.http-address.frisia.nn2</name>
-  <value>redbad01.cs.ru.nl:9871</value>
+  <value>redbad04.cs.ru.nl:9870</value>
 </property>
 -->
 <!-- Maybe misunderstood needing this twice: -->
