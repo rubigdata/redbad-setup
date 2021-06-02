@@ -23,10 +23,12 @@
   <name>dfs.ha.namenodes.gelre</name>
   <value>nn1,nn2</value>
 </property>
+<!--
 <property>
   <name>dfs.ha.namenodes.frisia</name>
   <value>nn1,nn2</value>
 </property>
+-->
 <property>
   <name>dfs.namenode.rpc-address.gelre.nn1</name>
   <value>redbad01.cs.ru.nl:8020</value>
@@ -35,6 +37,7 @@
   <name>dfs.namenode.rpc-address.gelre.nn2</name>
   <value>redbad02.cs.ru.nl:8020</value>
 </property>
+<!--
 <property>
   <name>dfs.namenode.rpc-address.frisia.nn1</name>
   <value>redbad02.cs.ru.nl:8021</value>
@@ -43,6 +46,7 @@
   <name>dfs.namenode.rpc-address.frisia.nn2</name>
   <value>redbad01.cs.ru.nl:8021</value>
 </property>
+-->
 <property>
   <name>dfs.namenode.http-address.gelre.nn1</name>
   <value>redbad01.cs.ru.nl:9870</value>
@@ -51,6 +55,7 @@
   <name>dfs.namenode.http-address.gelre.nn2</name>
   <value>redbad02.cs.ru.nl:9870</value>
 </property>
+<!--
 <property>
   <name>dfs.namenode.http-address.frisia.nn1</name>
   <value>redbad02.cs.ru.nl:9871</value>
@@ -59,6 +64,7 @@
   <name>dfs.namenode.http-address.frisia.nn2</name>
   <value>redbad01.cs.ru.nl:9871</value>
 </property>
+-->
 <!-- Maybe misunderstood needing this twice: -->
 <property>
   <name>dfs.namenode.shared.edits.dir.gelre</name>
@@ -74,10 +80,12 @@
   <name>dfs.client.failover.proxy.provider.gelre</name>
   <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
 </property>
+<!--
 <property>
   <name>dfs.client.failover.proxy.provider.frisia</name>
   <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
 </property>
+-->
 <property>
   <name>dfs.ha.fencing.methods</name>
   <value>sshfence</value>
