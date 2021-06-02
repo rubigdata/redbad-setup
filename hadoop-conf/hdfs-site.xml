@@ -13,9 +13,84 @@
   See the License for the specific language governing permissions and
   limitations under the License. See accompanying LICENSE file.
 -->
-
-<!-- Put site-specific property overrides in this file. -->
-
+<!-- REDBAD Hadoop Configuration 2021 -->
 <configuration>
-
+<property>
+  <name>dfs.nameservices</name>
+  <value>gelre,frisia</value>
+</property>
+<property>
+  <name>dfs.ha.namenodes.gelre</name>
+  <value>nn1,nn2</value>
+</property>
+<property>
+  <name>dfs.ha.namenodes.frisia</name>
+  <value>nn1,nn2</value>
+</property>
+<property>
+  <name>dfs.namenode.rpc-address.gelre.nn1</name>
+  <value>redbad01.cs.ru.nl:8020</value>
+</property>
+<property>
+  <name>dfs.namenode.rpc-address.gelre.nn2</name>
+  <value>redbad02.cs.ru.nl:8020</value>
+</property>
+<property>
+  <name>dfs.namenode.rpc-address.frisia.nn1</name>
+  <value>redbad02.cs.ru.nl:8021</value>
+</property>
+<property>
+  <name>dfs.namenode.rpc-address.frisia.nn2</name>
+  <value>redbad01.cs.ru.nl:8021</value>
+</property>
+<property>
+  <name>dfs.namenode.http-address.gelre.nn1</name>
+  <value>redbad01.cs.ru.nl:9870</value>
+</property>
+<property>
+  <name>dfs.namenode.http-address.gelre.nn2</name>
+  <value>redbad02.cs.ru.nl:9870</value>
+</property>
+<property>
+  <name>dfs.namenode.http-address.frisia.nn1</name>
+  <value>redbad02.cs.ru.nl:9871</value>
+</property>
+<property>
+  <name>dfs.namenode.http-address.frisia.nn2</name>
+  <value>redbad01.cs.ru.nl:9871</value>
+</property>
+<!-- Maybe misunderstood needing this twice: -->
+<property>
+  <name>dfs.namenode.shared.edits.dir.gelre</name>
+  <value>qjournal://redbad01.cs.ru.nl:8485;redbad02.cs.ru.nl:8485;rbdata01.cs.ru.nl:8485/gelre</value>
+</property>
+<!--
+<property>
+  <name>dfs.namenode.shared.edits.dir.frisia</name>
+  <value>qjournal://redbad01.cs.ru.nl:8485;redbad02.cs.ru.nl:8485;rbdata01.cs.ru.nl:8485/frisia</value>
+</property>
+-->
+<property>
+  <name>dfs.client.failover.proxy.provider.gelre</name>
+  <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+<property>
+  <name>dfs.client.failover.proxy.provider.frisia</name>
+  <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+<property>
+  <name>dfs.ha.fencing.methods</name>
+  <value>sshfence</value>
+</property>
+<!-- tested with "sudo -u hdfs ssh hdfs@rbdata09 echo 1" -->
+<property>
+  <name>dfs.ha.fencing.ssh.private-key-files</name>
+  <value>/opt/hadoop/.ssh/id_rsa_redbad-nodes</value>
+</property>
+<!-- Suggested to be must-have to escape failing ssh 
+     https://www.packtpub.com/books/content/setting-namenode-ha -->
+<property>
+  <name>dfs.ha.fencing.methods</name>
+  <value>shell(/bin/true)</value>
+</property>
 </configuration>
