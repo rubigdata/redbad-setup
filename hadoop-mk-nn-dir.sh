@@ -8,7 +8,11 @@ for c in gelre frisia
 do
     for n in 1 2
     do
-	d="/var/storage/data${n}/dfs-${c}/nn"
+	d="/var/storage/data${n}/dfs"
+	sudo mkdir -p $d
+	sudo chown hdfs:hadoop $d
+	chmod 0700 $d
+	d="/var/storage/data${n}/dfs/${c}/nn"
 	mkdir -p $d
 	chown hdfs:hadoop $d
 	chmod 0700 $d
@@ -19,7 +23,7 @@ done
 # dfs.journalnode.edits.dir
 # Q: postfix gelre/frisia?
 d="/var/storage/data2/qjm-journal-edits"
-mkdir -p $d
-chown hdfs:hadoop $d
+sudo mkdir -p $d
+sudo chown hdfs:hadoop $d
 chmod 0700 $d
 
