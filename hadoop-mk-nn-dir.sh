@@ -15,7 +15,11 @@ do
     done
 done
 #
-# dfs.namenode.checkpoint.dir
-# /data1/dfs/snn
-# TODO QJM directories?
+# QJM data storage
+# dfs.journalnode.edits.dir
+# Q: postfix gelre/frisia?
+d="/var/storage/data2/qjm-journal-edits"
+mkdir -p $d
+chown hdfs:hadoop $d
+chmod 0700 $d
 
