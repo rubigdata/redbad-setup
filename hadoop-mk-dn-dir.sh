@@ -19,10 +19,14 @@ do
         chmod 0700 $d
         #
         # mapreduce.job.local.dir
+        d="/var/storage/data${n}/mapred"
+        sudo mkdir -p $d
+        sudo chown mapred:hadoop $d
+        sudo -u mapred chmod 0770 $d    
         d="/var/storage/data${n}/mapred/$c/local"
-        mkdir -p $d
-        chown mapred:hadoop $d
-        chmod 0770 $d    
+        sudo -u mapred mkdir -p $d
+        sudo -u mapred chown mapred:hadoop $d
+        sudo -u mapred chmod 0770 $d    
     done
 done
 #
@@ -30,9 +34,9 @@ done
 for n in 1 4
 do
     d="/var/storage/data${n}/mapred/system"
-    mkdir -p $d
-    chown mapred:hadoop $d
-    chmod 0770 $d    
+    sudo mkdir -p $d
+    sudo chown mapred:hadoop $d
+    sudo -u mapred chmod 0770 $d    
 done
 #
 # Temp & log directories
