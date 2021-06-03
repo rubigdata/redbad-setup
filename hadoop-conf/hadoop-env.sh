@@ -145,6 +145,7 @@ export HADOOP_OS_TYPE=${HADOOP_OS_TYPE:-$(uname -s)}
 # This is a comma delimited list.  It may NOT be overridden via .hadooprc
 # Entries may be added/removed as needed.
 # export HADOOP_OPTIONAL_TOOLS="hadoop-azure,hadoop-aliyun,hadoop-aws,hadoop-openstack,hadoop-kafka,hadoop-azure-datalake"
+export HADOOP_OPTIONAL_TOOLS="hadoop-aws"
 
 ###
 # Options for remote shell connectivity
