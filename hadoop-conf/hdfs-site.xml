@@ -108,4 +108,16 @@
   <name>dfs.ha.fencing.methods</name>
   <value>shell(/bin/true)</value>
 </property>
+<property>
+  <name>dfs.datanode.data.dir.gelre</name>
+  <value>file:///var/storage/data1/dfs/gelre/dn,file:///var/storage/data2/dfs/gelre/dn,file:///var/storage/data3/dfs/gelre/dn,file:///var/storage/data4/dfs/gelre/dn,file:///var/storage/data5/dfs/gelre/dn,file:///var/storage/data6/dfs/gelre/dn</value>
+</property>
+<property>
+  <name>dfs.namenode.name.dir.gelre</name>
+  <value>file:///var/storage/data1/dfs/gelre/nn,file:///var/storage/data2/dfs/gelre/nn</value>
+</property>
+<property>
+  <name>dfs.replication</name>
+  <value>3</value>
+</property>
 </configuration>
