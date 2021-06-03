@@ -15,5 +15,116 @@
 <configuration>
 
 <!-- Site specific YARN configuration properties -->
+<!-- 
+  See https://blog.knoldus.com/install-configure-hadoop-hdfsyarn-cluster-and-integrate-spark-with-it/ 
+  for more info about this setup
+-->
+        <property>
+                <name>yarn.resourcemanager.hostname</name>
+                <value>redbad02</value>
+        </property>
+        <property>
+                <name>yarn.resourcemanager.address</name>
+                <value>redbad02:8032</value>
+        </property>
+        <property>
+                <name>yarn.resourcemanager.scheduler.address</name>
+                <value>redbad02:8030</value>
+        </property>
+        <property>
+                <name>yarn.resourcemanager.resource-tracker.address</name>
+                <value>redbad02:8031</value>
+        </property>
+        <property>
+        <name>yarn.log-aggregation-enable</name>
+                <value>true</value>
+        </property>
+        <property>
+                <name>yarn.dispatcher.exit-on-error</name>
+                <value>true</value>
+        </property>
+        <property>
+                <description>List of directories to store localized files in.
+                </description>
+                <name>yarn.nodemanager.local-dirs</name>
+                 <value>/hadoop-yarn/cache/ubuntu/nm-local-dir</value>
+        </property>
+        <property>
+                <description>Where to store container logs.</description>
+                <name>yarn.nodemanager.log-dirs</name>
+                <value>/var/log/hadoop/gelre/containers</value>
+        </property>
+        <property>
+                <description>Where to aggregate logs to.</description>
+                <name>yarn.nodemanager.remote-app-log-dir</name>
+                <value>/var/log/hadoop/gelre/apps</value>
+        </property>
+        <property>
+                <description>Classpath for typical applications.</description>
+                <name>yarn.application.classpath</name>
+                <value>
+                        $HADOOP_CONF_DIR,
+                        /hadoop/*,/hadoop/lib/*,
+                        $HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,
+                        $HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,
+                        $HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*
+               </value>
+        </property>
+        <property>
+                <name>yarn.scheduler.minimum-allocation-mb</name>
+                <name>1536</name>
+        </property>
+        <property>
+                <name>yarn.scheduler.maximum-allocation-mb</name>
+                <value>4608</value>
+        </property>
+        <property>
+                <name>yarn.nodemanager.resource.memory-mb</name>
+                <value>4608</value>
+        </property>
+        <property>
+                <name>yarn.app.mapreduce.am.resource.mb</name>
+                <value>3072</value>
+        </property>
+        <property>
+                <name>yarn.app.mapreduce.am.command-opts</name>
+                <value>-Xmx2457m</value>
+        </property>
+        <property>
+                <name>yarn.webapp.ui2.enable</name>
+                <value>true</value>
+        </property>
+ <!-- resource manager secure configuration info -->
+<!-- Secure install will follow...
+        <property>
+                 <name>yarn.resourcemanager.principal</name>
+                 <value>yarn/_HOST@HADOOP.COM</value>
+        </property>
 
+
+        <property>
+                 <name>yarn.resourcemanager.keytab</name>
+                 <value>/home/ubuntu/keytabs/yarn-worker.keytab</value>
+        </property>
+-->
+<!-- remember the principal for the node manager is the principal for the host this yarn-site.xml file is on -->
+<!-- these (next four) need only be set on node manager nodes -->
+<!--
+        <property>
+                 <name>yarn.nodemanager.principal</name>
+                 <value>yarn/_HOST@HADOOP.COM</value>
+        </property>
+        <property>
+                 <name>yarn.nodemanager.keytab</name>
+                 <value>/home/ubuntu/keytabs/yarn-worker.keytab</value>
+        </property>
+-->
+        <property>
+                 <name>yarn.nodemanager.container-executor.class</name>
+                 <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
+        </property>
+        <property>
+                 <name>yarn.nodemanager.linux-container-executor.group</name>
+                 <value>yarn</value>
+        </property>
 </configuration>
