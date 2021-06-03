@@ -2,15 +2,19 @@
 : ${1?"Usage: sudo $0 password-prefix"}
 PASS=$1
 HADOOP_GID=321
+YARN_GID=$((HADOOP_GID+4))
 HADOOP_UID=321
 MAPRED_UID=$((HADOOP_UID+1))
 SPARK_UID=$((HADOOP_UID+2))
 ZK_UID=$((HADOOP_UID+3))
+YARN_UID=$((HADOOP_UID+4))
 groupadd -r -g ${HADOOP_GID} hadoop
+groupadd -r -g ${YARN_GID} yarn
 useradd -r -M -u ${HADOOP_UID} -g ${HADOOP_GID} -d /opt/hadoop hdfs
 useradd -r -M -u ${MAPRED_UID} -g ${HADOOP_GID} -d /opt/mapred mapred
 useradd -r -M -u ${SPARK_UID} -g ${HADOOP_GID} -d /opt/spark spark
 useradd -r -M -u ${ZK_UID} -g ${HADOOP_GID} -d /opt/zookeeper zookeeper
+useradd -r -M -u ${YARN_UID} -s /bin/nologin -g ${YARN_GID} yarn
 echo ${PASS}-h@d00p | passwd --stdin hdfs
 echo ${PASS}-m@pr3d | passwd --stdin mapred
 echo ${PASS}-sp@rk | passwd --stdin spark
