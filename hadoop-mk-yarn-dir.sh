@@ -21,7 +21,7 @@ do
     		sudo chmod 0700 $d
     		#
 		# yarn.nodemanager.log-dirs
-    		d=/var/storage/data${n}/yarn/$c/logs
+    		d=/var/storage/data${n}/yarn/$c/log
     		sudo mkdir -p $d
     		sudo chown yarn:hadoop $d
     		sudo chmod 0770 $d    
