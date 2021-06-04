@@ -100,7 +100,7 @@
                 <name>yarn.webapp.ui2.enable</name>
                 <value>true</value>
         </property>
- <!-- resource manager secure configuration info -->
+<!-- resource manager secure configuration info -->
 <!-- Secure install will follow...
         <property>
                  <name>yarn.resourcemanager.principal</name>
@@ -133,4 +133,36 @@
                  <name>yarn.nodemanager.linux-container-executor.group</name>
                  <value>yarn</value>
         </property>
+<property>
+  <name>yarn.resourcemanager.ha.enabled</name>
+  <value>true</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.cluster-id</name>
+  <value>gelre</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.ha.rm-ids</name>
+  <value>rm1,rm2</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.hostname.rm1</name>
+  <value>redbad02</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.hostname.rm2</name>
+  <value>redbad01</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.webapp.address.rm1</name>
+  <value>redbad02:8088</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.webapp.address.rm2</name>
+  <value>redbad01:8088</value>
+</property>
+<property>
+  <name>hadoop.zk.address</name>
+  <value>redbad01:2181,redbad02:2181,rbdata01:2181</value>
+</property>
 </configuration>
