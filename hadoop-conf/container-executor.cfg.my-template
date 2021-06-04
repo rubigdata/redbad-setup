@@ -1,7 +1,7 @@
 yarn.nodemanager.linux-container-executor.group=hadoop#configured value of yarn.nodemanager.linux-container-executor.group
 banned.users=#comma separated list of users who can not run applications
 min.user.id=1000#Prevent other super-users
-allowed.system.users=root,yarn##comma separated list of system users who CAN run applications
+allowed.system.users=root,hdfs,yarn##comma separated list of system users who CAN run applications
 feature.tc.enabled=false
 
 # The configs below deal with settings for Docker

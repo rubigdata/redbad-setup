@@ -129,6 +129,7 @@
                  <value>/home/ubuntu/keytabs/yarn-worker.keytab</value>
         </property>
 -->
+<!-- Does this solve some problems?
         <property>
                  <name>yarn.nodemanager.container-executor.class</name>
                  <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
@@ -137,6 +138,16 @@
                  <name>yarn.nodemanager.linux-container-executor.group</name>
                  <value>hadoop</value>
         </property>
+-->
+<!-- 
+  Instead of the linux-container-executor above;
+  can also set this to true and instead give a static username through
+  yarn.nodemanager.linux-container-executor.nonsecure-mode.local-user
+-->
+<property>
+<name>yarn.nodemanager.linux-container-executor.nonsecure-mode.limit-users</name>
+<value>false</value>
+</property>
 <property>
   <name>yarn.resourcemanager.ha.enabled</name>
   <value>true</value>
