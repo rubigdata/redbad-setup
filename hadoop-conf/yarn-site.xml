@@ -16,8 +16,10 @@
 
 <!-- Site specific YARN configuration properties -->
 <!-- 
-  See https://blog.knoldus.com/install-configure-hadoop-hdfsyarn-cluster-and-integrate-spark-with-it/ 
-  for more info about this setup
+  See 
+    + https://blog.knoldus.com/install-configure-hadoop-hdfsyarn-cluster-and-integrate-spark-with-it/ 
+    + http://bdlabs.edureka.co/static/help/topics/cdh_ig_yarn_cluster_deploy.html
+  for more info
 -->
         <property>
                 <name>yarn.resourcemanager.hostname</name>
@@ -47,17 +49,21 @@
                 <description>List of directories to store localized files in.
                 </description>
                 <name>yarn.nodemanager.local-dirs</name>
-                 <value>/hadoop-yarn/cache/ubuntu/nm-local-dir</value>
+                <value>/var/storage/data1/yarn/gelre/local,/var/storage/data2/yarn/gelre/local,/var/storage/data3/yarn/gelre/local,/var/storage/data4/yarn/gelre/local,/var/storage/data5/yarn/gelre/local,/var/storage/data6/yarn/gelre/local</value>
         </property>
         <property>
-                <description>Where to store container logs.</description>
+                <description>List of directories to store localized files in.
+                </description>
                 <name>yarn.nodemanager.log-dirs</name>
-                <value>/var/log/hadoop/gelre/containers</value>
+                <value>/var/storage/data1/yarn/gelre/log,/var/storage/data2/yarn/gelre/log,/var/storage/data3/yarn/gelre/log,/var/storage/data4/yarn/gelre/log,/var/storage/data5/yarn/gelre/log,/var/storage/data6/yarn/gelre/log</value>
+                <!-- <value>/var/storage/data1/yarn/gelre/log</value> -->
         </property>
         <property>
+		<!-- TODO check how to handle HA failover -->
                 <description>Where to aggregate logs to.</description>
                 <name>yarn.nodemanager.remote-app-log-dir</name>
-                <value>/var/log/hadoop/gelre/apps</value>
+                <!-- <value>/var/log/hadoop/gelre/apps</value> -->
+		<value>hdfs://redbad01.cs.ru.nl:8020/var/log/hadoop-yarn/apps</value>
         </property>
         <property>
                 <description>Classpath for typical applications.</description>
