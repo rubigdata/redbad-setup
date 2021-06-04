@@ -12,18 +12,18 @@ do
         then
     	    	d=/var/storage/data${n}/yarn
     		sudo mkdir -p $d
-		sudo chown -R root:yarn $d
+		sudo chown -R yarn:hadoop $d
     		#
     		# yarn.nodemanager.local-dirs
     		d=/var/storage/data${n}/yarn/$c/local
     		sudo mkdir -p $d
-    		sudo chown root:yarn $d
+    		sudo chown yarn:hadoop $d
     		sudo chmod 0700 $d
     		#
 		# yarn.nodemanager.log-dirs
     		d=/var/storage/data${n}/yarn/$c/logs
     		sudo mkdir -p $d
-    		sudo chown root:yarn $d
+    		sudo chown yarn:hadoop $d
     		sudo chmod 0770 $d    
 	fi
     done
