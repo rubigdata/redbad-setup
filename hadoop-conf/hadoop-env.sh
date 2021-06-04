@@ -416,3 +416,6 @@ export HADOOP_OPTIONAL_TOOLS="hadoop-aws"
 #
 # For example, to limit who can execute the namenode command,
 # export HDFS_NAMENODE_USER=hdfs
+
+export YARN_RESOURCEMANAGER_USER=yarn
+export YARN_NODEMANAGER_USER=yarn
