@@ -9,18 +9,19 @@ SPARK_UID=$((HADOOP_UID+2))
 ZK_UID=$((HADOOP_UID+3))
 YARN_UID=$((HADOOP_UID+4))
 groupadd -r -g ${HADOOP_GID} hadoop
-groupadd -r -g ${YARN_GID} yarn
 useradd -r -M -u ${HADOOP_UID} -g ${HADOOP_GID} -d /opt/hadoop hdfs
 useradd -r -M -u ${MAPRED_UID} -g ${HADOOP_GID} -d /opt/mapred mapred
 useradd -r -M -u ${SPARK_UID} -g ${HADOOP_GID} -d /opt/spark spark
 useradd -r -M -u ${ZK_UID} -g ${HADOOP_GID} -d /opt/zookeeper zookeeper
-useradd -r -M -u ${YARN_UID} -s /bin/nologin -g ${YARN_GID} yarn
+useradd -r -M -u ${YARN_UID} -g ${HADOOP_GID} -d /opt/yarn yarn
 echo ${PASS}-h@d00p | passwd --stdin hdfs
 echo ${PASS}-m@pr3d | passwd --stdin mapred
 echo ${PASS}-sp@rk | passwd --stdin spark
 echo ${PASS}-z00k33p3r | passwd --stdin zookeeper
+echo ${PASS}-y@rn | passwd --stdin yarn
 usermod -aG wheel,sudo hdfs
 usermod -aG wheel,sudo mapred
 usermod -aG wheel,sudo spark
 usermod -aG wheel,sudo zookeeper
+usermod -aG wheel,sudo yarn
 mkdir -p /var/data
