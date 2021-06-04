@@ -109,11 +109,11 @@
   <value>shell(/bin/true)</value>
 </property>
 <property>
-  <name>dfs.datanode.data.dir.gelre</name>
+  <name>dfs.datanode.data.dir</name>
   <value>file:///var/storage/data1/dfs/gelre/dn,file:///var/storage/data2/dfs/gelre/dn,file:///var/storage/data3/dfs/gelre/dn,file:///var/storage/data4/dfs/gelre/dn,file:///var/storage/data5/dfs/gelre/dn,file:///var/storage/data6/dfs/gelre/dn</value>
 </property>
 <property>
-  <name>dfs.namenode.name.dir.gelre</name>
+  <name>dfs.namenode.name.dir</name>
   <value>file:///var/storage/data1/dfs/gelre/nn,file:///var/storage/data2/dfs/gelre/nn</value>
 </property>
 <property>
