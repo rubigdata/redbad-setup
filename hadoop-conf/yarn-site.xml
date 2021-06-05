@@ -59,7 +59,6 @@
     <!-- <value>/var/storage/data1/yarn/gelre/log</value> -->
   </property>
   <property>
-    <!-- TODO check how to handle HA failover -->
     <description>Where to aggregate logs to.</description>
     <name>yarn.nodemanager.remote-app-log-dir</name>
     <!-- <value>/var/log/hadoop/gelre/apps</value> -->
@@ -106,37 +105,35 @@
   </property>
   <!-- resource manager secure configuration info -->
   <!-- Secure install will follow...
-       <property>
-       <name>yarn.resourcemanager.principal</name>
-       <value>yarn/_HOST@HADOOP.COM</value>
-       </property>
-
-
-<property>
-<name>yarn.resourcemanager.keytab</name>
-<value>/home/ubuntu/keytabs/yarn-worker.keytab</value>
-</property>
+      <property>
+        <name>yarn.resourcemanager.principal</name>
+        <value>yarn/_HOST@HADOOP.COM</value>
+      </property>
+      <property>
+        <name>yarn.resourcemanager.keytab</name>
+        <value>/home/ubuntu/keytabs/yarn-worker.keytab</value>
+      </property>
   -->
   <!-- remember the principal for the node manager is the principal for the host this yarn-site.xml file is on -->
   <!-- these (next four) need only be set on node manager nodes -->
   <!--
       <property>
-      <name>yarn.nodemanager.principal</name>
-      <value>yarn/_HOST@HADOOP.COM</value>
+        <name>yarn.nodemanager.principal</name>
+        <value>yarn/_HOST@HADOOP.COM</value>
       </property>
       <property>
-      <name>yarn.nodemanager.keytab</name>
-      <value>/home/ubuntu/keytabs/yarn-worker.keytab</value>
+        <name>yarn.nodemanager.keytab</name>
+        <value>/home/ubuntu/keytabs/yarn-worker.keytab</value>
       </property>
   -->
   <!-- Does this solve some problems?
        <property>
-       <name>yarn.nodemanager.container-executor.class</name>
-       <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
+         <name>yarn.nodemanager.container-executor.class</name>
+         <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
        </property>
        <property>
-       <name>yarn.nodemanager.linux-container-executor.group</name>
-       <value>hadoop</value>
+         <name>yarn.nodemanager.linux-container-executor.group</name>
+         <value>hadoop</value>
        </property>
   -->
   <!-- 
@@ -177,6 +174,21 @@
     <value>redbad01:8088</value>
   </property>
   <property>
+    <description>Enable RM to recover state after starting. If true, then
+    yarn.resourcemanager.store.class must be specified</description>
+    <name>yarn.resourcemanager.recovery.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <description>The class to use as the persistent store.</description>
+    <name>yarn.resourcemanager.store.class</name>
+    <value>org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore</value>
+  </property>
+  <property>
+    <description>Comma separated list of Host:Port pairs. Each corresponds to a ZooKeeper server
+    (e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002") to be used by the RM for storing RM state.
+    This must be supplied when using org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore
+    as the value for yarn.resourcemanager.store.class</description>
     <name>hadoop.zk.address</name>
     <value>redbad01:2181,redbad02:2181,rbdata01:2181</value>
   </property>
