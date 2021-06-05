@@ -15,20 +15,24 @@
 -->
 <!-- REDBAD Hadoop Configuration 2021 -->
 <configuration>
-<property>
-  <name>fs.defaultFS</name>
-  <value>hdfs://gelre</value>
-</property>
-<property>
-  <name>dfs.journalnode.edits.dir</name>
-  <value>/var/storage/data2/qjm-journal-edits</value>
-</property>
- <property>
-   <name>dfs.ha.automatic-failover.enabled.gelre</name>
-   <value>true</value>
- </property>
- <property>
-   <name>ha.zookeeper.quorum</name>
-   <value>redbad01.cs.ru.nl:2181,redbad02.cs.ru.nl:2181,rbdata01.cs.ru.nl:2181</value>
- </property>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://gelre</value>
+  </property>
+  <property>
+    <name>hadoop.http.staticuser.user</name>
+    <value>hdfs</value>
+  </property>
+  <property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/var/storage/data2/qjm-journal-edits</value>
+  </property>
+  <property>
+    <name>dfs.ha.automatic-failover.enabled.gelre</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>ha.zookeeper.quorum</name>
+    <value>redbad01.cs.ru.nl:2181,redbad02.cs.ru.nl:2181,rbdata01.cs.ru.nl:2181</value>
+  </property>
 </configuration>
