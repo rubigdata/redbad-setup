@@ -120,4 +120,9 @@
   <name>dfs.replication</name>
   <value>3</value>
 </property>
+<!-- For commoncrawl, anonymous s3 access -->
+<property>
+  <name>fs.s3a.aws.credentials.provider</name>
+  <value>org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider</value>
+</property>
 </configuration>
