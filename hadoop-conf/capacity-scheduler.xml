@@ -31,7 +31,7 @@
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.gold.capacity</name>
-    <value>40</value>
+    <value>50</value><!--40-->
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.gold.maximum-capacity</name>
@@ -52,7 +52,7 @@
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.silver.capacity</name>
-    <value>30</value>
+    <value>40</value><!--30-->
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.silver.maximum-capacity</name>
@@ -65,7 +65,7 @@
 
   <property>
     <name>yarn.scheduler.capacity.root.bronze.state</name>
-    <value>RUNNING</value>
+    <value>STOPPED</value>
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.bronze.acl_submit_applications</name>
@@ -73,7 +73,7 @@
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.bronze.capacity</name>
-    <value>20</value>
+    <value>0</value><!-- 20 -->
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.bronze.maximum-capacity</name>
