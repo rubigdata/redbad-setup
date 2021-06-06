@@ -81,23 +81,27 @@
   </property>
   <property>
     <name>yarn.scheduler.minimum-allocation-mb</name>
-    <name>1536</name>
+    <name>1024</name>
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-mb</name>
-    <value>4608</value>
+    <value>31744</value>
   </property>
   <property>
     <name>yarn.nodemanager.resource.memory-mb</name>
-    <value>4608</value>
+    <value>31744</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>5</value>
   </property>
   <property>
     <name>yarn.app.mapreduce.am.resource.mb</name>
-    <value>3072</value>
+    <value>4096</value>
   </property>
   <property>
     <name>yarn.app.mapreduce.am.command-opts</name>
-    <value>-Xmx2457m</value>
+    <value>-Xmx3192m</value>
   </property>
   <property>
     <name>yarn.webapp.ui2.enable</name>
@@ -191,5 +195,14 @@
     as the value for yarn.resourcemanager.store.class</description>
     <name>hadoop.zk.address</name>
     <value>redbad01:2181,redbad02:2181,rbdata01:2181</value>
+  </property>
+  <!-- Capacity Scheduler -->
+    <property>
+    <name>yarn.acl.enable</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.scheduler.class</name>
+    <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
   </property>
 </configuration>
