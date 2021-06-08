@@ -96,7 +96,7 @@
     <value>5</value>
   </property>
   <property>
-    <name>yarn.app.mapreduce.am.resource.mb</name>
+    <name>yarn.app.mapreduce.am.resource.memory-mb</name>
     <value>4096</value>
   </property>
   <property>
