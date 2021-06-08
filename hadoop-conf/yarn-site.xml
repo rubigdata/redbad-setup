@@ -38,10 +38,6 @@
     <value>redbad02:8031</value>
   </property>
   <property>
-    <name>yarn.log-aggregation-enable</name>
-    <value>true</value>
-  </property>
-  <property>
     <name>yarn.dispatcher.exit-on-error</name>
     <value>true</value>
   </property>
@@ -58,12 +54,30 @@
     <value>/var/storage/data1/yarn/gelre/log,/var/storage/data2/yarn/gelre/log,/var/storage/data3/yarn/gelre/log,/var/storage/data4/yarn/gelre/log,/var/storage/data5/yarn/gelre/log,/var/storage/data6/yarn/gelre/log</value>
     <!-- <value>/var/storage/data1/yarn/gelre/log</value> -->
   </property>
+  <!-- Following: https://stackoverflow.com/questions/32713587/how-to-keep-yarns-log-files -->
   <property>
-    <description>Where to aggregate logs to.</description>
-    <name>yarn.nodemanager.remote-app-log-dir</name>
-    <!-- <value>/var/log/hadoop/gelre/apps</value> -->
-    <value>hdfs://redbad01.cs.ru.nl:8020/var/log/hadoop-yarn/apps</value>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
   </property>
+  <property>
+     <name>yarn.nodemanager.remote-app-log-dir</name>
+     <value>/app-logs</value>
+  </property>
+  <property>
+      <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
+      <value>logs</value>
+  </property>
+  <property>
+    <name>yarn.log.server.url</name>
+    <value>http://rbdata01.cs.ru.nl:19888/jobhistory/logs</value>
+  </property>
+  <!--
+  <property>
+      <description>Where to aggregate logs to.</description>
+      <name>yarn.nodemanager.remote-app-log-dir</name>
+      <value>hdfs://gelre/var/log/hadoop-yarn/apps</value>
+    </property>
+  -->
   <property>
     <description>Classpath for typical applications.</description>
     <name>yarn.application.classpath</name>
