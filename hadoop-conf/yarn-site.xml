@@ -38,6 +38,10 @@
     <value>redbad02:8031</value>
   </property>
   <property>
+    <name>yarn.cluster.max-application-priority</name>
+    <value>100</value>
+  </property>
+  <property>
     <name>yarn.dispatcher.exit-on-error</name>
     <value>true</value>
   </property>
@@ -110,7 +114,7 @@
     <value>5</value>
   </property>
   <property>
-    <name>yarn.app.mapreduce.am.resource.mb</name>
+    <name>yarn.app.mapreduce.am.resource.memory-mb</name>
     <value>4096</value>
   </property>
   <property>

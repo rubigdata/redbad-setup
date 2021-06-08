@@ -1,4 +1,4 @@
-# REDBAD SETUP
+# R E D B A D   S E T U P
 
 Setup script repo to be checked out on every node in the cluster.
 

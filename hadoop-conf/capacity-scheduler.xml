@@ -17,7 +17,7 @@
   </property>
   <property>
     <name>yarn.scheduler.caparcity.root.default.maximum-capacity</name>
-    <value>40</value>
+    <value>70</value>
   </property>
   
   <!-- Additional queues: -->
@@ -35,11 +35,11 @@
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.gold.maximum-capacity</name>
-    <value>70</value>
+    <value>90</value>
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.gold.user-limit-factor</name>
-    <value>2</value>
+    <value>1.4</value>
   </property>
 
   <property>
@@ -56,11 +56,11 @@
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.silver.maximum-capacity</name>
-    <value>60</value>
+    <value>90</value>
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.silver.user-limit-factor</name>
-    <value>2</value>
+    <value>1.5</value>
   </property>
 
   <property>
