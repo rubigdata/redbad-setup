@@ -39,7 +39,7 @@
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.gold.user-limit-factor</name>
-    <value>2</value>
+    <value>1.4</value>
   </property>
 
   <property>
@@ -60,7 +60,7 @@
   </property>
   <property>
     <name>yarn.scheduler.capacity.root.silver.user-limit-factor</name>
-    <value>2</value>
+    <value>1.5</value>
   </property>
 
   <property>
