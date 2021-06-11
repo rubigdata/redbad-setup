@@ -77,5 +77,5 @@ export SPARK_HOME=/opt/spark
 export SPARK_DIST_CLASSPATH=$(/opt/hadoop/bin/hadoop classpath)
 export HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
 export YARN_CONF_DIR=/opt/hadoop/etc/hadoop
-export SPARK_MASTER_HOST=redbad01
+#export SPARK_MASTER_HOST=redbad01
 export SPARK_PUBLIC_DNS=$(hostname -f)
