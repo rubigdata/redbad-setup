@@ -103,7 +103,8 @@
   -->
   <property>
     <name>dfs.ha.fencing.methods</name>
-    <value>sshfence</value>
+    <value>sshfence
+shell(/bin/true)</value>
   </property>
   <!-- tested with "sudo -u hdfs ssh hdfs@rbdata09 echo 1" -->
   <property>
@@ -112,10 +113,6 @@
   </property>
   <!-- Suggested to be must-have to escape failing ssh 
        https://www.packtpub.com/books/content/setting-namenode-ha -->
-  <property>
-    <name>dfs.ha.fencing.methods</name>
-    <value>shell(/bin/true)</value>
-  </property>
   <property>
     <name>dfs.datanode.data.dir</name>
     <value>file:///var/storage/data1/dfs/gelre/dn,file:///var/storage/data2/dfs/gelre/dn,file:///var/storage/data3/dfs/gelre/dn,file:///var/storage/data4/dfs/gelre/dn,file:///var/storage/data5/dfs/gelre/dn,file:///var/storage/data6/dfs/gelre/dn</value>
