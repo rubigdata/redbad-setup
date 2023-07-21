@@ -16,7 +16,7 @@
     <value>10</value>
   </property>
   <property>
-    <name>yarn.scheduler.caparcity.root.default.maximum-capacity</name>
+    <name>yarn.scheduler.capacity.root.default.maximum-capacity</name>
     <value>70</value>
   </property>
   
