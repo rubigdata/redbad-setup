@@ -1,14 +1,18 @@
 [Unit]
 Description=Zookeeper Daemon
 Documentation=http://zookeeper.apache.org
+Requires=network.target
+After=network.target
 
 [Service]    
 Type=forking
-Environment="ZOO_LOG_DIR=/var/log/zookeeper"
-Environment="ZOOPIDFILE=/var/run/zookeeper/zookeeper_server.pid"
-ExecStart=/usr/bin/sudo -E -u zookeeper /opt/zookeeper/bin/zkServer.sh start /etc/zookeeper/conf/zoo.cfg
-ExecStop=/usr/bin/sudo -E -u zookeeper /opt/zookeeper/bin/zkServer.sh stop /etc/zookeeper/conf/zoo.cfg
-ExecReload=/usr/bin/sudo -E -u zookeeper /opt/zookeeper/bin/zkServer.sh restart /etc/zookeeper/conf/zoo.cfg
+WorkingDirectory=/opt/zookeeper
+User=zookeeper
+Group=hadoop
+Environment=ZOO_LOG_DIR=/var/log/zookeeper
+ExecStart=/opt/zookeeper/bin/zkServer.sh start /etc/zookeeper/conf/zoo.cfg
+ExecStop=/opt/zookeeper/bin/zkServer.sh stop /etc/zookeeper/conf/zoo.cfg
+ExecReload=/opt/zookeeper/bin/zkServer.sh restart /etc/zookeeper/conf/zoo.cfg
 TimeoutSec=30
 Restart=on-failure
 
