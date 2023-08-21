@@ -26,9 +26,11 @@ done
 echo $1 | sudo -u zookeeper tee /var/data/zookeeper/myid
 sudo -u zookeeper cp zoo.cfg /etc/zookeeper/conf/zoo.cfg
 #
-# Systemd user setup
-mkdir -p $HOME/.config/systemd/user
-cp zookeeper.service $HOME/.config/systemd/user
-systemctl --user enable zookeeper
-systemctl --user start zookeeper
+# Systemd setup
+# Note: chcon may not be final, but FCOS does not work well with semanage
+#       see also https://github.com/coreos/fedora-coreos-tracker/issues/701
 sudo loginctl enable-linger core
+sudo cp zookeeper.service /etc/systemd/system
+sudo chcon -t bin_t /opt/zookeeper/bin/zkServer.sh
+sudo systemctl enable zookeeper
+sudo systemctl start zookeeper
