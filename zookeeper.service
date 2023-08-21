@@ -10,9 +10,9 @@ WorkingDirectory=/opt/zookeeper
 User=zookeeper
 Group=hadoop
 Environment=ZOO_LOG_DIR=/var/log/zookeeper
-ExecStart=sudo -u zookeeper /opt/zookeeper/bin/zkServer.sh start /etc/zookeeper/conf/zoo.cfg
-ExecStop=sudo -u zookeeper /opt/zookeeper/bin/zkServer.sh stop /etc/zookeeper/conf/zoo.cfg
-ExecReload=sudo -u zookeeper /opt/zookeeper/bin/zkServer.sh restart /etc/zookeeper/conf/zoo.cfg
+ExecStart=/opt/zookeeper/bin/zkServer.sh start /etc/zookeeper/conf/zoo.cfg
+ExecStop=/opt/zookeeper/bin/zkServer.sh stop /etc/zookeeper/conf/zoo.cfg
+ExecReload=/opt/zookeeper/bin/zkServer.sh restart /etc/zookeeper/conf/zoo.cfg
 TimeoutSec=30
 Restart=on-failure
 
