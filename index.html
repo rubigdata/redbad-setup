@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Redbad - Home</title>
+<style>
+table, th, td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<h1>Redbad</h1>
+<p>Are you a researcher or a student in the Big Data course, looking for the REDBAD UIs:</p>
+<table style="width:1200px">
+    <tr><th>Service</th><th style="width:70%">Links</th></tr>
+    <tr><td>Spark History Server</td><td><a href="http://rbdata01.cs.ru.nl:18080/">http://rbdata01.cs.ru.nl:18080/</a></td></tr>
+    <tr><td>Yarn Dashboards</td><td><a href="http://redbad01.cs.ru.nl:8088/ui2/">http://redbad01.cs.ru.nl:8088/ui2/</a> (new UI) or <a href="http://redbad01.cs.ru.nl:8088/cluster/">http://redbad01.cs.ru.nl:8088/cluster/</a> (old UI);<br />
+        possibly redirected to <tt>redbad02</tt> URLs, depending on failover state.</td></tr>
+    <tr><td>Hadoop HDFS UI</td><td><a href="http://redbad02.cs.ru.nl:9870">http://redbad02.cs.ru.nl:9870</a> or <a href="http://redbad01.cs.ru.nl:9870">http://redbad01.cs.ru.nl:9870</a>, active/passive depending on failover state</td></tr>
+    <tr><td>Hadoop Job History Server</td><td><a href="http://rbdata01.cs.ru.nl:19888/jobhistory">http://rbdata01.cs.ru.nl:19888/jobhistory</a></td></tr>
+</table>
+<p>Are you a researcher expecting to find additional services:</p>
+<table style="width:1200px">
+    <tr><th>Service</th><th style="width:70%">Links</th></tr>
+    <tr><td>MinIO</td><td><a href="https://s3.redbad.cs.ru.nl/s3/console/login">https://s3.redbad.cs.ru.nl/s3/console/login</a></td></tr>
+</table>
+</body>
+</html>
