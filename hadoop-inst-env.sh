@@ -1,8 +1,10 @@
 #!/bin/sh
 #
 # Software distribution
-sudo tar -xf /home/core/dist/hadoop-3.2.2.tar.gz -C /opt/
-sudo mv /opt/hadoop-3.2.2 /opt/hadoop
+source versions.rc
+#
+sudo tar -xf /home/core/dist/hadoop-${HADOOP_VER}.tar.gz -C /opt/
+sudo mv /opt/hadoop-${HADOOP_VER} /opt/hadoop
 sudo chown -R hdfs:hadoop /opt/hadoop
 #
 cp hadoop.rc $HOME/.bashrc.d/hadoop.rc

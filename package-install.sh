@@ -1,3 +1,2 @@
 #!/bin/sh
-sudo rpm-ostree install java-1.8.0-openjdk-devel
-sudo systemctl reboot
+sudo rpm-ostree install --reboot java-21-openjdk-devel
