@@ -5,7 +5,7 @@
 ##   - Spark (binary)
 ##   - Zookeeper (binary)
 ##
-source versions.rc
+. ./versions.rc
 #
 mkdir -p ${HOME}/dist
 pushd ${HOME}/dist
