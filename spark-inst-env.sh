@@ -1,8 +1,10 @@
 #!/bin/sh
 #
 # Software distribution
-sudo tar -xf /home/core/dist/spark-3.1.1-bin-without-hadoop.tgz -C /opt/
-sudo mv /opt/spark-3.1.1-bin-without-hadoop /opt/spark
+source versions.rc
+#
+sudo tar -xf /home/core/dist/spark-${SPARK_VER}-bin-without-hadoop.tgz -C /opt/
+sudo mv /opt/spark-${SPARK_VER}-bin-without-hadoop /opt/spark
 sudo chown -R spark:hadoop /opt/spark
 #
 sudo -u spark mkdir -p /opt/spark/.bashrc.d

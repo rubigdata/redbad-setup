@@ -1,9 +1,11 @@
 #!/bin/sh
 : ${1?"Usage: $0 zookeeper-myid"}
 #
+source versions.rc
+#
 # Software distribution
-sudo tar -xf /home/core/dist/apache-zookeeper-3.7.0-bin.tar.gz -C /opt/
-sudo mv /opt/apache-zookeeper-3.7.0-bin /opt/zookeeper
+sudo tar -xf /home/core/dist/apache-zookeeper-${ZK_VER}-bin.tar.gz -C /opt/
+sudo mv /opt/apache-zookeeper-${ZK_VER}-bin /opt/zookeeper
 sudo chown -R zookeeper:hadoop /opt/zookeeper
 #
 # Zookeeper data directory and symlink
