@@ -51,7 +51,7 @@
 
 # The java implementation to use. By default, this environment
 # variable is REQUIRED on ALL platforms except OS X!
-export JAVA_HOME=$(dirname $(dirname $(dirname `readlink -f /etc/alternatives/java`)))
+export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 
 # Location of Hadoop.  By default, Hadoop will attempt to determine
 # this location based upon its execution path.
