@@ -24,21 +24,38 @@ However... now we have run into problems with matching OS/library versions and n
 
 This turned out a biggish step.
 
-Eventually, we found that we need a manual intervention, after which re-enabling `zincati` does the job:
+Eventually, we found that we need one manual intervention to bring the
+system to FC40, after which re-enabling `zincati` does the job correctly:
 
-    sudo rpm-ostree deploy 40.20241006.3.0
+    # prepare for updates:
+    for k in 39 40 41 42 
+	do
+		curl -L https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-$k-primary \
+		  | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$k-primary
+		pushd /etc/pki/rpm-gpg
+		sudo ln -sf RPM-GPG-KEY-fedora-$k-primary RPM-GPG-KEY-fedora-$k-x86_64
+		popd
+	done
+	
+	# manual intervention
+	sudo rpm-ostree deploy --bypass-driver --reboot 40.20241006.3.0
 
+    # remove the old JDK layer
+	sudo rpm-ostree uninstall --reboot java-1.8.0-openjdk-devel
+
+	# start auto-updating
 	sudo sed -i 's/false/true/g' /etc/zincati/config.d/90-disable-auto-updates.toml
 	sudo systemctl restart zincati
 
+Let (or help) the system upgrade to FC42 eventually, and then reverse
+this setting:
+
+	sudo sed -i 's/true/false/g' /etc/zincati/config.d/90-disable-auto-updates.toml
+	sudo systemctl daemon-reload
+
 Layer the JDK into the system:
 
-    sudo rpm-ostree install java-21-openjdk-devel
-
-Before we finalize the guarding of upgrades, we should reverse this again:
-
-	sudo systemctl stop zincati
-	sudo sed -i 's/true/false/g' /etc/zincati/config.d/90-disable-auto-updates.toml
+    sudo rpm-ostree install --reboot java-21-openjdk-devel
 
 ### Install redbad setup
 
@@ -46,7 +63,11 @@ Follow instructions in `/home/arjen/gh/redbad/docs/update-setup.md`.
 
 ### Fix hadoop java setting:
 
-    sudo sed -i -e 's/JAVA_HOME=\$\(dirname(.*)\)\)/JAVA_HOME=\1/' /opt/hadoop/etc/hadoop/hadoop-env.sh
+	sudo sed -i -e 's/JAVA_HOME=\$(dirname \(.*\))/JAVA_HOME=\1/' \
+	  /opt/hadoop/etc/hadoop/hadoop-env.sh
+
+    cd redbad-setup ; git pull ; cp hadoop.rc ~/.bashrc.d/hadoop.rc ; cd
+
 
 SMCIPMITool redbad01-rc.cs.ru.nl ADMIN `cat ${HOME}/.ssh/.pass/passname01` ipmi  ....
 ipmifun name 01 shell
