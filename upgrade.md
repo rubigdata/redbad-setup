@@ -18,7 +18,8 @@ Check active namenode:
 
     hdfs haadmin -getAllServiceState
 
-However... now we have run into problems with matching OS/library versions and need to first update the OS.
+However... now we have run into problems with matching OS/library
+versions and need to first update the OS.
 
 ## Updating Fedora CoreOS from 38 to 42
 
@@ -122,11 +123,28 @@ Use the default script to start the cluster:
 
     sudo -iu hdfs /opt/hadoop/sbin/start-dfs.sh 
 
-### Initiate update
+### Upgrade Hadoop/HDFS
 
-Finally, we are at the status to really upgrade Hadoop and the HDFS filesystem.
+Finally, we are at the status to really upgrade Hadoop and the HDFS
+filesystem.
 
-Let us attempt a so-called "rolling upgrade" following the [online documentation][2] (of the old version).
+#### Analyze changes...
+
+Before we start, check the differences between the config files in
+`redbad-setup/hadoop-conf` (that we will override) with those from the
+new distribution:
+
+    cd redbad-setup/hadoop-conf
+    tar xzvfp ~/dist/hadoop-3.4.1.tar.gz hadoop-3.4.1/etc/hadoop
+	hadoop-env.sh hadoop-3.4.1/etc/hadoop/hadoop-env.sh
+
+Propagate the changes to the old version's config files to those in
+the new version's,  and update `redbad-setup` accordingly.
+
+#### Upgrade namenodes
+
+Let us attempt a so-called "rolling upgrade" following the [online
+documentation][2] (of the old version).
 
 Initiate the rolling upgrade (started at 16.30):
 
@@ -140,29 +158,66 @@ Stop the standby namenode:
 
     sudo -iu hdfs hdfs --daemon stop namenode
 
-Check the differences between the config files in `redbad-setup/hadoop-conf` (that we will override):
+Move the old Hadoop out of the way (but check if it wasn't a symlink
+already):
 
-    cd redbad-setup/hadoop-conf
-    tar xzvfp ~/dist/hadoop-3.4.1.tar.gz hadoop-3.4.1/etc/hadoop
-	hadoop-env.sh hadoop-3.4.1/etc/hadoop/hadoop-env.sh
-	
-Propagate the changes to the old version's config files to those in the new version's,  and update `redbad-setup` accordingly.
+	sudo mv /opt/hadoop /opt/hadoop-3.2.2
 
 Update that node (easiest as `root`):
 
-    cd redbad-setup
+	cd redbad-setup
     git pull
 	./hadoop-inst-env.sh
 
-
-Continue:
+Restart the standby namenode in rolling upgrade mode:
 
 	sudo -iu hdfs hdfs --daemon start namenode -rollingUpgrade started
 	
-	
+Next, activate a failover for the other namenode:
 
+    hdfs haadmin -failover nn1 nn2
 
+If this was successful (check with `hdfs haadmin
+-getAllServiceState`), then stop the now standby namenode:
 
+    # ... do not forget to ssh to the other namenode ...
+    sudo -iu hdfs hdfs --daemon stop namenode
+
+Update the node like above, and restart this namenode in standby mode
+with `-rollingUpgrade started`.
+
+#### Upgrade datanodes
+
+We now would simply stop and upgrade every datanode, e.g., 
+for `rbdata11` (but first `ssh rbdata11`):
+
+    export n=011
+
+	echo Node $n
+	sudo -iu hdfs hdfs dfsadmin -shutdownDatanode rbdata${n}:9867 upgrade 
+
+    # really stopped?
+	sudo -iu hdfs hdfs dfsadmin -getDatanodeInfo rbdata${n}:9867
+
+    # if yes: upgrade
+	sudo mv /opt/hadoop /opt/hadoop-3.2.2
+	cd redbad-setup ; git pull ; ./hadoop-inst-env.sh ; cd ..
+
+    # done: restart datanode
+	sudo -iu hdfs hdfs --daemon start datanode
+
+_Note:_ 
+On `rbdata06`, modify `hdfs-site.xml` to exclude the broken `disk6`.
+
+#### Finalize upgrade process
+
+Check the status of the cluster, e.g. using [the Web UI][3].
+Are all datanodes running the new software?
+
+Next, finalize the rolling upgrade:
+
+    sudo -iu hdfs hdfs dfsadmin -rollingUpgrade finalize
 
 [1]:	https://adoptium.net/installation/linux/#_centosrhelfedora_instructions "Adoptium repo setup"
 [2]:	https://hadoop.apache.org/docs/r3.2.2/hadoop-project-dist/hadoop-hdfs/HdfsRollingUpgrade.html#Upgrade "Rolling upgrade docs"
+[3]:	http://redbad02.cs.ru.nl:9870/dfshealth.html#tab-datanode
