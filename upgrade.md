@@ -67,8 +67,55 @@ Follow instructions in `/home/arjen/gh/redbad/docs/update-setup.md`.
 	  /opt/hadoop/etc/hadoop/hadoop-env.sh
 
     cd redbad-setup ; git pull ; cp hadoop.rc ~/.bashrc.d/hadoop.rc ; cd
+	
+### Legacy Java setups
+
+This would have been nice: `sudo rpm-ostree install adoptium-temurin-java-repository` but fails.
+
+Alternatively ([see Adoptium instructions](https://adoptium.net/installation/linux/#_centosrhelfedora_instructions)):
+
+```
+cat <<EOF | sudo tee /etc/yum.repos.d/adoptium.repo
+[Adoptium]
+name=Adoptium
+baseurl=https://packages.adoptium.net/artifactory/rpm/${DISTRIBUTION_NAME:-$(. /etc/os-release; echo $ID)}/\$releasever/\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
+EOF
+```
+
+Then, install the JDK for java 11:
+
+    sudo rpm-ostree install --reboot temurin-11-jdk
+
+Remove the default java 21 (or issue a whole series of `alternatives` commands...):
+
+    sudo rpm-ostree remove --reboot java-21-openjdk-devel
+
+You can use the newly added `java-setup.sh` to execute these steps.
+
+### ...
 
 
-SMCIPMITool redbad01-rc.cs.ru.nl ADMIN `cat ${HOME}/.ssh/.pass/passname01` ipmi  ....
-ipmifun name 01 shell
 
+### Update zookeeper
+
+Download correct versions of packages, and update toolbox:
+
+	toolbox-inst.sh
+	redbad-inst-pkg.sh 
+
+Install new zookeeper:
+
+	# just in case:
+	mv /opt/zookeeper /opt/zookeeper-old
+	
+	# install newly downloaded zookeeper package
+	zookeeper-inst-env.sh 
+
+Note:
+
+	sudo -E -u zookeeper /opt/zookeeper/bin/zkCli.sh -server redbad01.cs.ru.nl:2181
+	
+	
