@@ -1,0 +1,79 @@
+<!-- copy the contents of this file into conf/capacity-scheduler.xml -->
+<configuration>
+  <!-- 
+
+       Modify existing nodes related to the default key:
+
+       yarn.scheduler.capacity.resource-calculator:
+       <value>org.apache.hadoop.yarn.util.resource.DominantResourceCalculator</value>
+
+       yarn.scheduler.capacity.root.queues
+       <value>gold,silver,bronze,default</value>
+
+       yarn.scheduler.capacity.root.default.capacity
+       <value>10</value> 
+
+       yarn.scheduler.capacity.root.default.user-limit-factor:
+       <value>2</value> 
+
+       yarn.scheduler.capacity.root.default.maximum-capacity:
+       <value>40</value> 
+
+       yarn.scheduler.capacity.root.default.accessible-node-labels.CORE.capacity
+       <value>10</value> 
+
+  -->
+
+  <!-- Add nodes for the default queue: -->
+  
+  <property>
+    <name>yarn.scheduler.capacity.root.default.accessible-node-labels</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.default.accessible-node-labels.CORE.capacity</name>
+    <value>10</value>
+  </property>
+  
+  <!-- Add new nodes: -->
+
+  <property>
+    <name>yarn.scheduler.capacity.root.gold.state</name>
+    <value>RUNNING</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.gold.acl_submit_applications</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.gold.capacity</name>
+    <value>90</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.gold.maximum-capacity</name>
+    <value>95</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.gold.user-limit-factor</name>
+    <value>2</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.gold.accessible-node-labels</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.gold.accessible-node-labels.CORE.capacity</name>
+    <value>90</value>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.capacity.root.silver.state</name>
+    <value>STOPPED</value>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.capacity.root.bronze.state</name>
+    <value>STOPPED</value>
+  </property>
+  
+</configuration>
