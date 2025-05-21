@@ -72,7 +72,7 @@ Follow instructions in `/home/arjen/gh/redbad/docs/update-setup.md`.
 
 This would have been nice: `sudo rpm-ostree install adoptium-temurin-java-repository` but fails.
 
-Alternatively ([see Adoptium instructions](https://adoptium.net/installation/linux/#_centosrhelfedora_instructions)):
+Alternatively ([see Adoptium instructions][1]):
 
 ```
 cat <<EOF | sudo tee /etc/yum.repos.d/adoptium.repo
@@ -93,11 +93,9 @@ Remove the default java 21 (or issue a whole series of `alternatives` commands..
 
     sudo rpm-ostree remove --reboot java-21-openjdk-devel
 
-You can use the newly added `java-setup.sh` to execute these steps.
+You can use the newly added `java-setup.sh` to execute these steps:
 
-### ...
-
-
+    for n in $RB ; do echo $n; ssh $n "cd redbad-setup ; git pull ; sudo ./java-setup.sh"; done
 
 ### Update zookeeper
 
@@ -118,4 +116,30 @@ Note:
 
 	sudo -E -u zookeeper /opt/zookeeper/bin/zkCli.sh -server redbad01.cs.ru.nl:2181
 	
-	
+### Start Hadoop cluster
+
+Use the default script to start the cluster:
+
+    sudo -iu hdfs /opt/hadoop/sbin/start-dfs.sh 
+
+### Initiate update
+
+Finally, we are at the status to really upgrade Hadoop and the HDFS filesystem.
+
+Let us attempt a so-called "rolling upgrade" following the [online documentation][2] (of the old version).
+
+Initiate the rolling upgrade (started at 16.30):
+
+    hdfs dfsadmin -rollingUpgrade prepare
+
+And keep checking until it reports to be finalized (ended at ...)
+
+	hdfs dfsadmin -rollingUpgrade query
+
+
+
+
+
+
+[1]:	https://adoptium.net/installation/linux/#_centosrhelfedora_instructions "Adoptium repo setup"
+[2]:	https://hadoop.apache.org/docs/r3.2.2/hadoop-project-dist/hadoop-hdfs/HdfsRollingUpgrade.html#Upgrade "Rolling upgrade docs"
