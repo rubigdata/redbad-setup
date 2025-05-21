@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Software distribution
-source versions.rc
+. ./versions.rc
 #
 sudo tar -xf /home/core/dist/hadoop-${HADOOP_VER}.tar.gz -C /opt/
 sudo mv /opt/hadoop-${HADOOP_VER} /opt/hadoop

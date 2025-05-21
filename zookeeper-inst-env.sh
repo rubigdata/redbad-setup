@@ -1,7 +1,7 @@
 #!/bin/sh
 : ${1?"Usage: $0 zookeeper-myid"}
 #
-source versions.rc
+. ./versions.rc
 #
 # Software distribution
 sudo tar -xf /home/core/dist/apache-zookeeper-${ZK_VER}-bin.tar.gz -C /opt/

@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Software distribution
-source versions.rc
+. ./versions.rc
 #
 sudo tar -xf /home/core/dist/spark-${SPARK_VER}-bin-without-hadoop.tgz -C /opt/
 sudo mv /opt/spark-${SPARK_VER}-bin-without-hadoop /opt/spark
