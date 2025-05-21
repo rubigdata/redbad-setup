@@ -53,6 +53,10 @@
 # variable is REQUIRED on ALL platforms except OS X!
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 
+# The language environment in which Hadoop runs. Use the English
+# environment to ensure that logs are printed as expected.
+export LANG=en_US.UTF-8
+
 # Location of Hadoop.  By default, Hadoop will attempt to determine
 # this location based upon its execution path.
 export HADOOP_HOME=/opt/hadoop
@@ -424,3 +428,12 @@ export HADOOP_OPTIONAL_TOOLS="hadoop-aws"
 # This is needed when you do the security version:
 #export YARN_RESOURCEMANAGER_USER=yarn
 #export YARN_NODEMANAGER_USER=yarn
+
+###
+# Registry DNS specific parameters
+###
+
+# Supplemental options for privileged registry DNS
+# By default, Hadoop uses jsvc which needs to know to launch a
+# server jvm.
+# export HADOOP_REGISTRYDNS_SECURE_EXTRA_OPTS="-jvm server"
