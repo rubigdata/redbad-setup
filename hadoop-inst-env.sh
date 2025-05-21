@@ -5,7 +5,8 @@
 #
 sudo tar -xf /home/core/dist/hadoop-${HADOOP_VER}.tar.gz -C /opt/
 sudo ln -sf /opt/hadoop-${HADOOP_VER} /opt/hadoop
-sudo chown -R hdfs:hadoop /opt/hadoop
+sudo chown hdfs:hadoop /opt/hadoop
+sudo chown -R hdfs:hadoop /opt/hadoop-${HADOOP_VER}
 #
 cp hadoop.rc $HOME/.bashrc.d/hadoop.rc
 sudo -u hdfs mkdir -p /opt/hadoop/.bashrc.d
