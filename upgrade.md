@@ -136,7 +136,30 @@ And keep checking until it reports to be finalized (ended at ...)
 
 	hdfs dfsadmin -rollingUpgrade query
 
+Stop the standby namenode:
 
+    sudo -iu hdfs hdfs --daemon stop namenode
+
+Check the differences between the config files in `redbad-setup/hadoop-conf` (that we will override):
+
+    cd redbad-setup/hadoop-conf
+    tar xzvfp ~/dist/hadoop-3.4.1.tar.gz hadoop-3.4.1/etc/hadoop
+	hadoop-env.sh hadoop-3.4.1/etc/hadoop/hadoop-env.sh
+	
+Propagate the changes to the old version's config files to those in the new version's,  and update `redbad-setup` accordingly.
+
+Update that node (easiest as `root`):
+
+    cd redbad-setup
+    git pull
+	./hadoop-inst-env.sh
+
+
+Continue:
+
+	sudo -iu hdfs hdfs --daemon start namenode -rollingUpgrade started
+	
+	
 
 
 
