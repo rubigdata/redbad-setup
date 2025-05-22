@@ -218,6 +218,51 @@ Next, finalize the rolling upgrade:
 
     sudo -iu hdfs hdfs dfsadmin -rollingUpgrade finalize
 
+#### Restart Yarn
+
+First, we make sure that the Hadoop log directory is writable by other
+users in the `hadoop` group (e.g. `yarn`).
+
+    for n in $RB ; do ssh $n "sudo chmod g+w /opt/hadoop/logs"; done
+
+Then, start the resource managers on `redbad01` and `redbad02`.
+
+    for n in 01 02 ; do ssh yarn@redbad$n yarn --daemon start resourcemanager ; done
+
+And start the node managers on the datanodes.
+
+    for n in 01 02 03 04 05 06 07 08 09 10 11; do ssh yarn@rbdata${n} yarn --daemon start nodemanager ; done
+
+Check if Yarn is running correctly:
+
+    yarn rmadmin -getAllServiceState
+
+Start the history server on `rbdata01`.
+
+    ssh hdfs@rbdata01 mapred --daemon start historyserver
+
+### Upgrade Spark
+
+For Spark we simply have to upgrade the Spark packages on each of the
+nodes (unsure if this is actually necessary as Yarn ships all the jars
+when a job is submitted).
+
+    for n in $RB ; do ssh $n "bash -lc 'cd redbad-setup ; git pull ; sudo mv /opt/spark{,-3.1.1} ; ./spark-inst-env.sh '"; done
+
+Then we start the Spark history server on `rbdata01`.
+
+    ssh spark@rbdata01 /opt/spark/sbin/start-history-server.sh
+
+### Upgrade MinIO
+
+MinIO should automatically restart when the nodes restart, because it
+is managed by systemd services. If you want to upgrade MinIO, issue
+the following command (from a client that has the alias `rb`).
+
+    mc admin update rb
+
+This will perform a rolling upgrade of the MinIO nodes.
+
 [1]:	https://adoptium.net/installation/linux/#_centosrhelfedora_instructions "Adoptium repo setup"
 [2]:	https://hadoop.apache.org/docs/r3.2.2/hadoop-project-dist/hadoop-hdfs/HdfsRollingUpgrade.html#Upgrade "Rolling upgrade docs"
 [3]:	http://redbad02.cs.ru.nl:9870/dfshealth.html#tab-datanode
