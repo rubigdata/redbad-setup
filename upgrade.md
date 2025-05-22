@@ -241,6 +241,10 @@ Start the history server on `rbdata01`.
 
     ssh hdfs@rbdata01 mapred --daemon start historyserver
 
+And start the timeline server:
+
+	ssh yarn@rbdata01 yarn --daemon start timelineserver
+
 ### Upgrade Spark
 
 For Spark we simply have to upgrade the Spark packages on each of the

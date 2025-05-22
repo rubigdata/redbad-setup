@@ -223,4 +223,16 @@
     <name>yarn.resourcemanager.scheduler.class</name>
     <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
   </property>
+  <property>
+    <name>yarn.nodemanager.webapp.cross-origin.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.cross-origin.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.http.cross-origin.enabled</name>
+    <value>true</value>
+  </property>
 </configuration>
