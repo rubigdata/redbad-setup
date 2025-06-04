@@ -28,3 +28,11 @@ do
 	fi
     done
 done
+#
+# Node labels setup
+# https://hadoop.apache.org/docs/current3/hadoop-yarn/hadoop-yarn-site/NodeLabel.html
+#
+hdfs dfs -mkdir hdfs://gelre/etc
+hdfs dfs -chown hdfs:hadoop hdfs://gelre/etc
+hdfs dfs -mkdir hdfs://gelre/etc/node-labels
+hdfs dfs -chown yarn:hadoop hdfs://gelre/etc/node-labels
