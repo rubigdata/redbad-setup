@@ -52,3 +52,8 @@ Main procedure:
 Additional steps:
 
 1. Script `toolbox-inst.sh` to setup a `toolbox` with SBT and java.
+
+Browser settings:
+
+1. In firefox, set `network.stricttransportsecurity.preloadlist` to false to allow visiting the [dashboards](https://redbad.cs.ru.nl/).
+
