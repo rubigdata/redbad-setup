@@ -58,6 +58,19 @@ Layer the JDK into the system:
 
     sudo rpm-ostree install --reboot java-21-openjdk-devel
 
+### Add python
+
+In case we need to run jobs on PySpark, a `python` install would be useful:
+
+    sudo rpm-ostree install --reboot python3.11 python3.11-devel
+
+After the reboot:
+
+    sudo -iu hdfs hdfs --daemon start datanode
+    sudo -iu yarn yarn --daemon start nodemanager
+
+_TODO: check if we can put this safely in a systemd service setup._
+
 ### Install redbad setup
 
 Follow instructions in `/home/arjen/gh/redbad/docs/update-setup.md`.
